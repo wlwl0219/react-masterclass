@@ -12,11 +12,20 @@ const Circle = styled(Box)`
   border-radius: 50px;
 `;
 
+const Input = styled.input.attrs({ required: true })`
+  background-color: tomato;
+`;
+
 function App() {
   return (
-    <Father>
-      <Box bgColor="teal" />
-      <Circle bgColor="tomato" />
+    <Father as="header">
+      {/* <Box bgColor="teal" />
+      <Circle bgColor="tomato" /> */}
+      <Input />
+      <Input />
+      <Input />
+      <Input />
+      <Input />
     </Father>
   );
 }
