@@ -4,7 +4,7 @@ import Header from "./components/Header";
 function Root() {
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <Outlet />
     </div>
   );
