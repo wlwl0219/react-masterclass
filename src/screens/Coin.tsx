@@ -6,6 +6,7 @@ import {
   Outlet,
   Link,
   useMatch,
+  useNavigate
 } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
@@ -26,6 +27,14 @@ const Header = styled.header`
 const Title = styled.h1`
   font-size: 32px;
   color: ${(props) => props.theme.accentColor};
+`;
+
+const HomeBtn = styled.button`
+  background-color: rgba(0, 0, 0, 0.5);
+  color: ${(props) => props.theme.accentColor};
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
 `;
 
 const Loader = styled.span`
@@ -139,6 +148,11 @@ function Coin() {
   const { state } = useLocation();
   const priceMatch = useMatch("/:coinId/price");
   const chartMatch = useMatch("/:coinId/chart");
+  const navigate = useNavigate();
+
+  const goToHome = () => {
+    navigate("/react-masterclass");
+  };
 
   const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
     ["info", coinId],
@@ -162,6 +176,7 @@ function Coin() {
         </title>
       </Helmet>
       <Header>
+        <HomeBtn onClick={goToHome}>go home</HomeBtn>
         <Title>
         {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
