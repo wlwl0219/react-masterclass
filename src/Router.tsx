@@ -8,7 +8,7 @@ import Price from "./components/Price";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/react-masterclass",
     element: <Root />,
     children: [
       {
