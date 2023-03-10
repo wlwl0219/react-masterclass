@@ -146,8 +146,8 @@ interface PriceData {
 function Coin() {
   const { coinId } = useParams();
   const { state } = useLocation();
-  const priceMatch = useMatch("/:coinId/price");
-  const chartMatch = useMatch("/:coinId/chart");
+  const priceMatch = useMatch("/react-masterclass/:coinId/price");
+  const chartMatch = useMatch("/react-masterclass/:coinId/chart");
   const navigate = useNavigate();
 
   const goToHome = () => {
