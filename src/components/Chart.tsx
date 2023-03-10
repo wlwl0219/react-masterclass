@@ -26,6 +26,7 @@ function Chart() {
       refetchInterval: 10000,
     }
   );
+  
   const exceptData = data ?? []
   const chartData = exceptData?.map((d) => {
     return {
