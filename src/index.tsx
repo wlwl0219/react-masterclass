@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { RecoilRoot } from "recoil";
 import { RouterProvider } from "react-router-dom";
 import router from "./Router";
 
@@ -11,8 +12,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </RecoilRoot>
   </React.StrictMode>
 );
