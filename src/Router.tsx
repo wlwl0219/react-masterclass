@@ -3,7 +3,7 @@ import Root from "./Root";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/react-masterclass",
     element: <Root />,
     // children: [
     //   {
