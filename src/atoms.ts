@@ -1,14 +1,28 @@
 import { atom, selector } from "recoil";
 
+export interface ICategory {
+  id: number;
+  text: string;
+}
+
 export interface IToDo {
   text: string;
   id: number;
-  category: "TO_DO" | "DOING" | "DONE";
+  category: ICategory;
 }
 
-export const categoryState = atom({
+export const selectedCategoryState = atom<ICategory>({
+  key: "SelectedCategory",
+  default: { id: 1, text: "todo" },
+});
+
+export const categoryState = atom<ICategory[]>({
   key: "category",
-  default: "TO_DO",
+  default: [
+    { id: 1, text: "todo" },
+    { id: 2, text: "done" },
+    { id: 3, text: "doing" },
+  ],
 });
 
 export const toDoState = atom<IToDo[]>({
@@ -20,7 +34,7 @@ export const toDoSelector = selector({
   key: "toDoSelector",
   get: ({ get }) => {
     const toDos = get(toDoState);
-    const category = get(categoryState);
-    return toDos.filter((toDo) => toDo.category === category);
+    const category = get(selectedCategoryState);
+    return toDos.filter((toDo) => toDo.category.id === category.id);
   },
 });
