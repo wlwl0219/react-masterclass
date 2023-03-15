@@ -1,11 +1,17 @@
-import React from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { categoryState, toDoSelector, selectedCategoryState } from "../atoms";
+import React, { useEffect } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  toDoState,
+  categoryState,
+  toDoSelector,
+  selectedCategoryState,
+} from "../atoms";
 import CreateCategory from "./CreateCategory";
 import CreateToDo from "./CreateToDo";
 import ToDo from "./ToDo";
 
 function ToDoList() {
+  const setToDos = useSetRecoilState(toDoState);
   const toDos = useRecoilValue(toDoSelector);
   const category = useRecoilValue(categoryState);
   const [selectedCategory, setSelectedCategory] = useRecoilState(
@@ -22,6 +28,18 @@ function ToDoList() {
     });
   };
 
+  const loadToDos = () => {
+    const toDos = localStorage.getItem("TODO_LS");
+    if (toDos) {
+      const parsedToDos = JSON.parse(toDos);
+      setToDos([...parsedToDos]);
+    }
+  };
+
+  useEffect(() => {
+    loadToDos();
+  }, []);
+
   return (
     <div>
       <h1>Create to do</h1>
@@ -33,7 +51,9 @@ function ToDoList() {
       <select value={selectedCategory.id} onInput={onInput}>
         <option value="">카테고리선택</option>
         {category?.map((category) => (
-          <option value={category.id}>{category.text}</option>
+          <option key={category.id} value={category.id}>
+            {category.text}
+          </option>
         ))}
       </select>
       <h1>{selectedCategory.text} List</h1>

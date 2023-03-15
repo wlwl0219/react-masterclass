@@ -12,10 +12,13 @@ function CreateToDo() {
   const { register, handleSubmit, setValue } = useForm<IForm>();
 
   const handleValid = ({ toDo }: IForm) => {
-    setToDos((oldToDos) => [
-      { text: toDo, id: Date.now(), category },
-      ...oldToDos,
-    ]);
+    setToDos((oldToDos) => {
+      localStorage.setItem(
+        "TODO_LS",
+        JSON.stringify([{ text: toDo, id: Date.now(), category }, ...oldToDos])
+      );
+      return [{ text: toDo, id: Date.now(), category }, ...oldToDos];
+    });
     setValue("toDo", "");
   };
 

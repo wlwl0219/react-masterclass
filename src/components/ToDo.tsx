@@ -1,5 +1,5 @@
 import React from "react";
-import { useSetRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { IToDo, toDoState, categoryState } from "../atoms";
 
 function ToDo({ text, category, id }: IToDo) {
@@ -10,11 +10,10 @@ function ToDo({ text, category, id }: IToDo) {
     const {
       currentTarget: { name },
     } = event;
-
     const moveCategory = categoryList.filter((c) => c.id === Number(name));
 
     setToDos((prevToDos) => {
-      return prevToDos.map((todo) =>
+      const makeToDos = prevToDos.map((todo) =>
         todo.id === id
           ? {
               ...todo,
@@ -25,6 +24,8 @@ function ToDo({ text, category, id }: IToDo) {
             }
           : todo
       );
+      localStorage.setItem("TODO_LS", JSON.stringify(makeToDos));
+      return makeToDos;
     });
   };
 
@@ -34,7 +35,7 @@ function ToDo({ text, category, id }: IToDo) {
       {categoryList?.map(
         (c) =>
           c.id !== category.id && (
-            <button name={c.id + ""} onClick={onClick}>
+            <button key={c.id} name={c.id + ""} onClick={onClick}>
               {c.text}
             </button>
           )
