@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import Svg from "./SvgAni";
+import SvgAni from "./SvgAni";
 import Root from "./Root";
+import Animate from "./Animate";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Svg />,
+    element: <Animate />,
   },
 ]);
 

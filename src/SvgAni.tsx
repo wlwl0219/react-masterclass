@@ -26,7 +26,7 @@ const svg = {
   },
 };
 
-function Root() {
+function SvgAni() {
   return (
     <Wrapper>
       <Svg
@@ -49,4 +49,4 @@ function Root() {
   );
 }
 
-export default Root;
+export default SvgAni;
