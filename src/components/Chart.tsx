@@ -20,21 +20,22 @@ interface IHistorical {
 
 function Chart() {
   const { coinId } = useOutletContext<ChartProps>();
-  const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () =>
-    fetchCoinHistory(coinId),
+  const { isLoading, data } = useQuery<IHistorical[]>(
+    ["ohlcv", coinId],
+    () => fetchCoinHistory(coinId),
     {
       refetchInterval: 10000,
     }
   );
-  
-  const exceptData = data ?? []
+
+  const exceptData = data ?? [];
   const chartData = exceptData?.map((d) => {
     return {
       x: d.time_close,
-      y: [d.open, d.high, d.low, d.close]
-    }
-  })
-  
+      y: [d.open, d.high, d.low, d.close],
+    };
+  });
+
   return (
     <div>
       {isLoading ? (
@@ -62,14 +63,14 @@ function Chart() {
             },
             grid: { show: false },
             yaxis: {
-              show: false
+              show: false,
             },
             xaxis: {
               axisBorder: { show: false },
               axisTicks: { show: false },
               labels: { show: false },
               type: "datetime",
-            },          
+            },
           }}
         />
       )}
