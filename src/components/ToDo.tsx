@@ -24,7 +24,7 @@ function ToDo({ text, category, id }: IToDo) {
             }
           : todo
       );
-      localStorage.setItem("TODO_LS", JSON.stringify(makeToDos));
+      // localStorage.setItem("TODO_LS", JSON.stringify(makeToDos));
       return makeToDos;
     });
   };

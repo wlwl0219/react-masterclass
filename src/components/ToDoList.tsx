@@ -28,17 +28,17 @@ function ToDoList() {
     });
   };
 
-  const loadToDos = () => {
-    const toDos = localStorage.getItem("TODO_LS");
-    if (toDos) {
-      const parsedToDos = JSON.parse(toDos);
-      setToDos([...parsedToDos]);
-    }
-  };
+  // const loadToDos = () => {
+  //   const toDos = localStorage.getItem("TODO_LS");
+  //   if (toDos) {
+  //     const parsedToDos = JSON.parse(toDos);
+  //     setToDos([...parsedToDos]);
+  //   }
+  // };
 
-  useEffect(() => {
-    loadToDos();
-  }, []);
+  // useEffect(() => {
+  //   loadToDos();
+  // }, []);
 
   return (
     <div>
